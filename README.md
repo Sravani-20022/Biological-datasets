@@ -70,3 +70,47 @@ GSE293159 is a public genomic dataset that provides an opportunity to study gene
 The dataset is suitable for a beginner-level bioinformatics project because it has a clearly defined research question, publicly accessible RNA-seq data, and a manageable number of samples.
 
 This project demonstrates how public biological datasets can be selected and described for future computational analysis.
+
+# Data Cleaning and Basic Analysis of Lung Cancer Gene Expression
+
+## 1. Dataset Overview
+
+- Dataset: GSE293159
+- Source: NCBI Gene Expression Omnibus (GEO)
+- Organism: Homo sapiens
+- Data type: RNA-seq raw gene counts
+- Samples: 12 (4 primary tumors, 4 brain metastases, 4 normal brain tissues)
+- Total gene records: 57,781
+
+## 2. Objective
+
+To perform basic data cleaning, quality checks, and statistical analysis of lung adenocarcinoma gene expression data.
+
+## 3. Methods
+
+Python and pandas were used to load the compressed CSV dataset, inspect its structure, check missing values, identify duplicate gene identifiers, and calculate descriptive statistics.
+
+Matplotlib was used to create a bar graph comparing total raw gene counts across the 12 samples.
+
+## 4. Results
+
+- Dataset contained 57,781 gene records and 12 sample columns.
+- No missing values were detected.
+- No negative raw counts were detected.
+- No completely duplicate rows were detected.
+- Two gene identifiers appeared more than once.
+- The median raw count was zero across the samples.
+
+## 5. Conclusion
+
+The dataset was successfully loaded and examined using Python. Basic quality checks and descriptive statistics were completed, and a graph was generated to visualize total raw counts across samples.
+
+The analysis provides an initial understanding of the dataset and prepares it for further bioinformatics analysis. Raw counts require appropriate normalization before making biological comparisons between samples.
+
+## 6. Tools Used
+
+Python, pandas, Matplotlib, and NCBI GEO.
+
+## Dataset Source
+
+https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE293159
