@@ -1,0 +1,30 @@
+import gzip
+import pandas as pd
+import matplotlib.pyplot as plt
+with gzip.open("GSE293159_rawCounts_hg19.csv.gz", "rt") as file:
+    df = pd.read_csv(file)
+print(df.head())
+print("Dataset shape:", df.shape)
+print("Missing values:", df.isnull().sum().sum())
+counts = df.select_dtypes(include="number")
+summary = counts.describe()
+print(summary)
+summary.to_csv("gene_expression_summary.csv")
+print("Column names:")
+print(df.columns.tolist())
+print("Duplicate gene IDs:", df.iloc[:, 0].duplicated().sum())
+counts = df.select_dtypes(include="number")
+print("Negative counts:", (counts < 0).sum().sum())
+print("Duplicate rows:", df.duplicated().sum())
+df.iloc[:, 0] = df.iloc[:, 0].str.strip()
+df.to_csv("cleaned_gene_expression.csv", index=False)
+print("Cleaned dataset saved successfully.")
+counts = df.iloc[:, 1:]
+sample_totals = counts.sum()
+sample_totals.plot(kind="bar")
+plt.title("Total Gene Counts per Sample")
+plt.xlabel("Samples")
+plt.ylabel("Total Raw Counts")
+plt.tight_layout()
+plt.savefig("sample_gene_counts.png")
+plt.show()
